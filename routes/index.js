@@ -5,11 +5,8 @@ var router = express.Router();
 var quizController = require('../controllers/quiz_controller');
 var commentController = require('../controllers/comment_controller');
 var sessionController = require('../controllers/session_controller');
-<<<<<<< HEAD
 var userController = require('../controllers/user_controller');
 var authorController = require('../controllers/author_controller');
-=======
->>>>>>> 22a7dfbdd05d432f17b86b202051ca79617b1a55
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -17,14 +14,9 @@ router.get('/', function(req, res) {
 });
 
 // Autoload de comandos con :quizId
-<<<<<<< HEAD
 router.param('quizId', quizController.load);  // autoload :quizId
 router.param('commentId', commentController.load);  // autoload :commentId
 router.param('userId', userController.load);  // autoload :userId
-=======
-router.param('quizId', quizController.load); // autoload :quizId
-router.param('commentId', commentController.load); //autoload :commentId
->>>>>>> 22a7dfbdd05d432f17b86b202051ca79617b1a55
 
 // Definición de rutas de sesion
 router.get('/login',  sessionController.new);     // formulario login
@@ -39,7 +31,6 @@ router.put('/user/:userId(\\d+)',  sessionController.loginRequired, userControll
 router.delete('/user/:userId(\\d+)',  sessionController.loginRequired, userController.ownershipRequired, userController.destroy);     // borrar cuenta
 router.get('/user/:userId(\\d+)/quizes',  quizController.index);     // ver las preguntas de un usuario
 
-<<<<<<< HEAD
 // Definición de rutas de /quizes
 router.get('/quizes',                      quizController.index);
 router.get('/quizes/:quizId(\\d+)',        quizController.show);
@@ -50,18 +41,11 @@ router.get('/quizes/:quizId(\\d+)/edit',   sessionController.loginRequired, quiz
 router.put('/quizes/:quizId(\\d+)',        sessionController.loginRequired, quizController.ownershipRequired, multer({ dest: './public/media/'}), quizController.update);
 router.delete('/quizes/:quizId(\\d+)',     sessionController.loginRequired, quizController.ownershipRequired, quizController.destroy);
 
-=======
->>>>>>> 22a7dfbdd05d432f17b86b202051ca79617b1a55
 // Definición de rutas de comentarios
 router.get('/quizes/:quizId(\\d+)/comments/new', commentController.new);
 router.post('/quizes/:quizId(\\d+)/comments',    commentController.create);
 router.get('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/publish', 
-<<<<<<< HEAD
 	                                    sessionController.loginRequired, commentController.ownershipRequired, commentController.publish);
 router.get('/author', authorController.index);
-=======
-	                                    sessionController.loginRequired, commentController.publish);
-
->>>>>>> 22a7dfbdd05d432f17b86b202051ca79617b1a55
 
 module.exports = router;
